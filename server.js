@@ -4,15 +4,21 @@ const path = require('path');
 const app = express();
 const parse = require('csv-parse/lib/');
 const port = process.env.PORT || 5000;
-
+const basicAuth = require('express-basic-auth')
 const csvpath = (process.env.NODE_ENV === "production") ? "/opt/android-server/AndroidServer/src/data_gps/"
     : __dirname;
 
+app.use(basicAuth({
+	users: { 'admin': 'trackm3' },
+	challenge: true,
+	realm: 'Imb4T3st4pp',
+}));
 
-app.use('/', express.static(`$(__dirname)/client/build`));
+app.use(express.static('client/build'));
 
 
-app.get('/api/gps', (req, res) => {
+
+app.get('delanelliot.com/api/gps', (req, res) => {
 
     updateData();
     res.send({data:output});
