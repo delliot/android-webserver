@@ -21,9 +21,8 @@ var options = {
     cert: fs.readFileSync(sslPath + 'fullchain.pem')
 };
 
-this.server = http.createServer(options, this.app);
-this.io = require('socket.io').listen(this.server);
-this.server.listen(443);
+http.createServer(options, app).listen(443);
+
 
 
 app.use(basicAuth({
