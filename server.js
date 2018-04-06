@@ -18,10 +18,6 @@ app.get('/api/hello', (req, res) => {
     res.send({ express: 'Hello From Express' });
 });
 
-app.get('/', (req, res) => {
-    res.send("hello world")
-});
-
 
 
 app.get('/ping', function (req, res) {
