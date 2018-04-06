@@ -12,7 +12,7 @@ const csvpath = (process.env.NODE_ENV === "production") ? "/opt/android-server/A
     : __dirname;
 
 
-var http = require('https');
+var https = require('https');
 
 var sslPath = '/etc/letsencrypt/live/delanelliot.com/';
 
@@ -21,7 +21,6 @@ var options = {
     cert: fs.readFileSync(sslPath + 'fullchain.pem')
 };
 
-http.createServer(options, app).listen(443);
 
 
 
@@ -75,3 +74,4 @@ function updateData() {
 }
 
 //app.listen(port, () => console.log(`Listening on port ${port}`));
+https.createServer(options, app).listen(443);
