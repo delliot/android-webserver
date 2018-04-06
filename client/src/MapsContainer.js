@@ -26,7 +26,7 @@ class MapsContainer extends Component {
     fetchGpsData = async () => {
         // await response of fetch call
         console.log("start gps fetch");
-        let response = await fetch('delanelliot.com/api/gps', {
+        let response = await fetch('/api/gps', {
             credentials: 'include'
         });
         // only proceed once promise is resolved
