@@ -9,7 +9,7 @@ const csvpath = (process.env.NODE_ENV === "production") ? "/opt/android-server/A
     : __dirname;
 
 
-app.use('/', express.static(`$(__dirname)/client/build`));
+app.use(express.static('client/build'));
 
 
 app.get('/api/gps', (req, res) => {
