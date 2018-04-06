@@ -1,8 +1,6 @@
 //This is the Express Server for the google maps API site. It serves an API as well as statically serves a React App.
 //It's primary purpose is parsing the CSV file into JSON and sending it to the client.
 //Programmer and Designer: Delan Elliot
-
-
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -13,10 +11,25 @@ const basicAuth = require('express-basic-auth')
 const csvpath = (process.env.NODE_ENV === "production") ? "/opt/android-server/AndroidServer/src/data_gps/"
     : __dirname;
 
+
+var http = require('https');
+
+var sslPath = '/etc/letsencrypt/live/delanelliot.com/';
+
+var options = {
+    key: fs.readFileSync(sslPath + 'privkey.pem'),
+    cert: fs.readFileSync(sslPath + 'fullchain.pem')
+};
+
+this.server = http.createServer(options, this.app);
+this.io = require('socket.io').listen(this.server);
+this.server.listen(443);
+
+
 app.use(basicAuth({
 	users: { 'admin': 'trackm3' },
 	challenge: true,
-	realm: 'Imb4T3st4pp',
+	realm: 'delanrealm1234',
 }));
 
 app.use(express.static('client/build'));
@@ -62,4 +75,4 @@ function updateData() {
     });
 }
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+//app.listen(port, () => console.log(`Listening on port ${port}`));
