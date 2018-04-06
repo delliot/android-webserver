@@ -8,12 +8,24 @@ const port = process.env.PORT || 5000;
 const csvpath = (process.env.NODE_ENV === "production") ? "/opt/android-server/AndroidServer/src/data_gps/"
     : __dirname;
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+if(process.env.NODE_ENV === "production")
+{
+    app.use('/', express.static(`$(__dirname)/client/build`));
 }
+
 
 app.get('/api/hello', (req, res) => {
     res.send({ express: 'Hello From Express' });
+});
+
+app.get('/', (req, res) => {
+    res.send("hello world")
+});
+
+
+
+app.get('/ping', function (req, res) {
+    return res.send('pong');
 });
 
 
@@ -27,8 +39,8 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/gps', (req, res) => {
 
-
-
+    updateData();
+    res.send({data:output});
 });
 
 
