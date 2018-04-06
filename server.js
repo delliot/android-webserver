@@ -16,9 +16,7 @@ app.use(basicAuth({
 
 app.use(express.static('client/build'));
 
-
-
-app.get('delanelliot.com/api/gps', (req, res) => {
+app.get('/api/gps', (req, res) => {
 
     updateData();
     res.send({data:output});
