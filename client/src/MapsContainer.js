@@ -5,6 +5,11 @@ import { GoogleApiWrapper } from 'google-maps-react';
 
 import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 
+
+/*
+This is a react container component which holds the Google Map object. It parses the client data and displays
+the selected dataset.
+ */
 class MapsContainer extends Component {
     state = {
         lines: [],

@@ -1,3 +1,8 @@
+//This is the Express Server for the google maps API site. It serves an API as well as statically serves a React App.
+//It's primary purpose is parsing the CSV file into JSON and sending it to the client.
+//Programmer and Designer: Delan Elliot
+
+
 const express = require('express');
 const fs = require('fs');
 const path = require('path');

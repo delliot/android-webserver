@@ -2,6 +2,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+
+/*
+This is the map element. It's props are set by the container and the line is redrawn each time the property is changed.
+Also a react component.
+ */
 export default class TrackerMaps extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.google !== this.props.google || prevProps.lines !== this.props.lines) {
@@ -29,10 +34,6 @@ export default class TrackerMaps extends Component {
                 mapTypeId: 'terrain'
             });
 
-
-
-
-
             this.map = new maps.Map(node, mapConfig);
 
             if(this.props.lines)
@@ -50,7 +51,6 @@ export default class TrackerMaps extends Component {
             console.log("loaded map");
         }
     }
-
 
     render() {
         const style = {
