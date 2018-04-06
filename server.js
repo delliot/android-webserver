@@ -73,5 +73,12 @@ function updateData() {
     });
 }
 
-//app.listen(port, () => console.log(`Listening on port ${port}`));
+// set up plain http server
+var ht = express.createServer();
+
+// set up a route to redirect http to https
+ht.get('*', function(req, res) {
+    res.redirect('https://' + req.headers.host + req.url);
+});
+
 https.createServer(options, app).listen(443);
